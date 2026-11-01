@@ -93,6 +93,8 @@ public:
     void clear();
     void reset(InputContext *inputContext);
     void updateUI(InputContext *inputContext);
+    ClipboardCandidateInfo currentEntry(const InputContext *inputContext) const;
+    ClipboardCandidateInfo removeCurrentEntry(InputContext *inputContext);
 
     void reloadConfig() override;
 
@@ -120,6 +122,8 @@ public:
 private:
     FCITX_ADDON_EXPORT_FUNCTION(Clipboard, primary);
     FCITX_ADDON_EXPORT_FUNCTION(Clipboard, clipboard);
+    FCITX_ADDON_EXPORT_FUNCTION(Clipboard, currentEntry);
+    FCITX_ADDON_EXPORT_FUNCTION(Clipboard, removeCurrentEntry);
     FCITX_ADDON_EXPORT_FUNCTION(Clipboard, setPrimary);
     FCITX_ADDON_EXPORT_FUNCTION(Clipboard, setClipboard);
     FCITX_ADDON_EXPORT_FUNCTION(Clipboard, setPrimaryV2);

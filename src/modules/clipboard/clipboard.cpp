@@ -115,7 +115,7 @@ FCITX_DEFINE_LOG_CATEGORY(clipboard_log, "clipboard");
 class ClipboardCandidateWord : public CandidateWord {
 public:
     ClipboardCandidateWord(Clipboard *q, const std::string &str, bool password)
-        : q_(q), str_(str) {
+        : q_(q), str_(str), password_(password) {
         Text text;
         if (password && !*q->config().showPassword) {
             auto length = utf8::length(str);
@@ -141,6 +141,7 @@ public:
 
     Clipboard *q_;
     std::string str_;
+    bool password_;
 };
 
 Clipboard::Clipboard(Instance *instance) : instance_(instance) {
@@ -223,6 +224,47 @@ void Clipboard::clear() {
 void Clipboard::reset(InputContext *inputContext) {
     tempMode_->reset(inputContext);
 }
+
+ClipboardCandidateInfo
+Clipboard::currentEntry(const InputContext *inputContext) const {
+    if (!inputContext) {
+        return {};
+    }
+    auto candidateList = inputContext->inputPanel().candidateList();
+    if (!candidateList) {
+        return {};
+    }
+    const int index = candidateList->cursorIndex();
+    if (index < 0 || index >= static_cast<int>(candidateList->size())) {
+        return {};
+    }
+    const auto *candidate = dynamic_cast<const ClipboardCandidateWord *>(
+        &candidateList->candidate(index));
+    if (!candidate) {
+        return {};
+    }
+    return ClipboardCandidateInfo{candidate->str_, candidate->password_, true};
+}
+
+ClipboardCandidateInfo
+Clipboard::removeCurrentEntry(InputContext *inputContext) {
+    auto entry = currentEntry(inputContext);
+    if (!entry.valid || !inputContext) {
+        return {};
+    }
+    const bool removedFromHistory =
+        history_.remove(ClipboardEntry{.text = entry.text});
+    const bool removedPrimary = primary_.text == entry.text;
+    if (removedPrimary) {
+        primary_.clear();
+    }
+    if (!removedFromHistory && !removedPrimary) {
+        return {};
+    }
+    updateUI(inputContext);
+    return entry;
+}
+
 void Clipboard::updateUI(InputContext *inputContext) {
     inputContext->inputPanel().reset();
 

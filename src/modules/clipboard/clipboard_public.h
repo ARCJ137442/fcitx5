@@ -11,10 +11,28 @@
 #include <fcitx/addoninstance.h>
 #include <fcitx/inputcontext.h>
 
+namespace fcitx {
+
+// Raw clipboard text for the selected native candidate. Callers must preserve
+// the sensitive flag when storing or presenting the returned text.
+struct ClipboardCandidateInfo {
+    std::string text;
+    bool sensitive = false;
+    bool valid = false;
+};
+
+} // namespace fcitx
+
 FCITX_ADDON_DECLARE_FUNCTION(Clipboard, primary,
                              std::string(const fcitx::InputContext *ic));
 FCITX_ADDON_DECLARE_FUNCTION(Clipboard, clipboard,
                              std::string(const fcitx::InputContext *ic));
+FCITX_ADDON_DECLARE_FUNCTION(Clipboard, currentEntry,
+                             fcitx::ClipboardCandidateInfo(
+                                 const fcitx::InputContext *ic));
+FCITX_ADDON_DECLARE_FUNCTION(Clipboard, removeCurrentEntry,
+                             fcitx::ClipboardCandidateInfo(
+                                 fcitx::InputContext *ic));
 FCITX_ADDON_DECLARE_FUNCTION(Clipboard, setPrimary,
                              void(const std::string &name,
                                   const std::string &str));
