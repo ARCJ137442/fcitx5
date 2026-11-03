@@ -2348,6 +2348,18 @@ msgid "Number of entries"
 msgstr "项目个数"
 
 #: src/modules/clipboard/clipboard.h
+msgid "Clipboard trigger keys"
+msgstr "唤起剪贴板"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Pinned menu trigger keys"
+msgstr "唤起置顶菜单"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Show shortcut hints"
+msgstr "显示快捷键提示"
+
+#: src/modules/clipboard/clipboard.h
 msgid "Show pinned clipboard items"
 msgstr "仅显示置顶剪贴板项"
 
@@ -2364,8 +2376,36 @@ msgid "Close clipboard menu"
 msgstr "关闭剪贴板菜单"
 
 #: src/modules/clipboard/clipboard.h
+msgid "Close native clipboard panel"
+msgstr "关闭原版剪贴板面板"
+
+#: src/modules/clipboard/clipboard.h
 msgid "Clear clipboard history"
 msgstr "清空剪贴板历史"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Select clipboard item by position"
+msgstr "按位置选择剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Paste selected clipboard item"
+msgstr "粘贴所选剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Select previous clipboard item"
+msgstr "选择上一个剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Select next clipboard item"
+msgstr "选择下一个剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Move pinned clipboard item up"
+msgstr "向上移动置顶剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Move pinned clipboard item down"
+msgstr "向下移动置顶剪贴板项"
 
 #: src/modules/clipboard/clipboard.h
 msgid "Previous clipboard page"
@@ -2406,6 +2446,10 @@ msgstr "<密码>"
 #, c++-format
 msgid "Clipboard (Press {0} to clear history):"
 msgstr "剪贴板 (按 {0} 清空历史): "
+
+#: src/modules/clipboard/clipboard.cpp
+msgid "Clipboard:"
+msgstr "剪贴板："
 
 #: src/modules/clipboard/clipboard.cpp:259
 msgid "No clipboard history."

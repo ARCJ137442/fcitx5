@@ -57,9 +57,8 @@ bool ClipboardTempMode::keyEvent(const KeyEvent &keyEvent) {
             }
             return true;
         }
-        if (keyEvent.key().check(FcitxKey_space) ||
-            keyEvent.key().check(FcitxKey_Return) ||
-            keyEvent.key().check(FcitxKey_KP_Enter)) {
+        if (keyEvent.checkKeyList(*clipboard_->config().pasteSelectedKey,
+                                  KeyEventMatchingMode::MatchAllNormalizedKeys)) {
             if (!candidateList->empty() && candidateList->cursorIndex() >= 0) {
                 candidateList->candidate(candidateList->cursorIndex())
                     .select(inputContext);
@@ -67,8 +66,8 @@ bool ClipboardTempMode::keyEvent(const KeyEvent &keyEvent) {
             return true;
         }
 
-        if (keyEvent.checkKeyList(
-                clipboard_->instance()->globalConfig().defaultPrevPage())) {
+        if (keyEvent.checkKeyList(*clipboard_->config().previousPageKey,
+                                  KeyEventMatchingMode::MatchAllNormalizedKeys)) {
             auto *pageable = candidateList->toPageable();
             if (!pageable->hasPrev()) {
                 if (pageable->usedNextBefore()) {
@@ -82,26 +81,26 @@ bool ClipboardTempMode::keyEvent(const KeyEvent &keyEvent) {
             }
         }
 
-        if (keyEvent.checkKeyList(
-                clipboard_->instance()->globalConfig().defaultNextPage())) {
+        if (keyEvent.checkKeyList(*clipboard_->config().nextPageKey,
+                                  KeyEventMatchingMode::MatchAllNormalizedKeys)) {
             candidateList->toPageable()->next();
             inputContext->updateUserInterface(
                 UserInterfaceComponent::InputPanel);
             return true;
         }
 
-        if (keyEvent.checkKeyList(clipboard_->instance()
-                                      ->globalConfig()
-                                      .defaultPrevCandidate())) {
+        if (keyEvent.checkKeyList(
+                *clipboard_->config().previousCandidateKey,
+                KeyEventMatchingMode::MatchAllNormalizedKeys)) {
             candidateList->toCursorMovable()->prevCandidate();
             inputContext->updateUserInterface(
                 UserInterfaceComponent::InputPanel);
             return true;
         }
 
-        if (keyEvent.checkKeyList(clipboard_->instance()
-                                      ->globalConfig()
-                                      .defaultNextCandidate())) {
+        if (keyEvent.checkKeyList(
+                *clipboard_->config().nextCandidateKey,
+                KeyEventMatchingMode::MatchAllNormalizedKeys)) {
             candidateList->toCursorMovable()->nextCandidate();
             inputContext->updateUserInterface(
                 UserInterfaceComponent::InputPanel);
@@ -109,10 +108,10 @@ bool ClipboardTempMode::keyEvent(const KeyEvent &keyEvent) {
         }
     }
 
-    if (keyEvent.key().isModifier() || keyEvent.key().hasModifier()) {
-        return false;
-    }
-    if (keyEvent.key().check(FcitxKey_Escape)) {
+    if (keyEvent.checkKeyList(*clipboard_->config().closeMenuKey,
+                              KeyEventMatchingMode::MatchAllNormalizedKeys) ||
+        keyEvent.checkKeyList(*clipboard_->config().nativeResetKey,
+                              KeyEventMatchingMode::MatchAllNormalizedKeys)) {
         reset(inputContext);
         return true;
     }

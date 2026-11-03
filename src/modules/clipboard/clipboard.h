@@ -47,9 +47,17 @@ constexpr char PASSWORD_MIME_TYPE[] = "x-kde-passwordManagerHint";
 FCITX_CONFIGURATION(
     ClipboardConfig, KeyListOption triggerKey{this,
                                               "TriggerKey",
-                                              _("Trigger Key"),
+                                              _("Clipboard trigger keys"),
                                               {Key("Control+semicolon")},
                                               KeyListConstrain()};
+    KeyListOption favoritesTriggerKey{
+        this,
+        "FavoritesTriggerKey",
+        _("Pinned menu trigger keys"),
+        {Key("Alt+Shift+v")},
+        KeyListConstrain()};
+    Option<bool> showShortcutHints{
+        this, "ShowShortcutHints", _("Show shortcut hints"), true};
     KeyListOption favoritesFilterKey{
         this,
         "FavoritesFilterKey",
@@ -74,12 +82,55 @@ FCITX_CONFIGURATION(
         _("Close clipboard menu"),
         {Key("q")},
         KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption nativeResetKey{
+        this,
+        "NativeResetKey",
+        _("Close native clipboard panel"),
+        {Key("Escape")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
     KeyListOption clearHistoryKey{
         this,
         "ClearHistoryKey",
         _("Clear clipboard history"),
         {Key("BackSpace"), Key("Delete")},
         KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption selectionKeys{
+        this,
+        "SelectionKeys",
+        _("Select clipboard item by position"),
+        {Key("1"), Key("2"), Key("3"), Key("4"), Key("5"),
+         Key("6"), Key("7"), Key("8"), Key("9"), Key("0")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption pasteSelectedKey{
+        this,
+        "PasteSelectedKey",
+        _("Paste selected clipboard item"),
+        {Key("space"), Key("Return"), Key("KP_Enter")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption previousCandidateKey{
+        this,
+        "PreviousCandidateKey",
+        _("Select previous clipboard item"),
+        {Key("Up")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption nextCandidateKey{
+        this,
+        "NextCandidateKey",
+        _("Select next clipboard item"),
+        {Key("Down")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption movePinnedUpKey{
+        this,
+        "MovePinnedUpKey",
+        _("Move pinned clipboard item up"),
+        {Key("Control+Up")},
+        KeyListConstrain()};
+    KeyListOption movePinnedDownKey{
+        this,
+        "MovePinnedDownKey",
+        _("Move pinned clipboard item down"),
+        {Key("Control+Down")},
+        KeyListConstrain()};
     KeyListOption previousPageKey{
         this,
         "PreviousPageKey",
@@ -182,7 +233,6 @@ private:
     Instance *instance_;
     std::vector<std::unique_ptr<fcitx::HandlerTableEntry<fcitx::EventHandler>>>
         eventHandlers_;
-    KeyList selectionKeys_;
     ClipboardConfig config_;
     std::unique_ptr<ClipboardTempMode> tempMode_;
 

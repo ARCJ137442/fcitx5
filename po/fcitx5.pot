@@ -2297,6 +2297,18 @@ msgid "Number of entries"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
+msgid "Clipboard trigger keys"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Pinned menu trigger keys"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Show shortcut hints"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
 msgid "Show pinned clipboard items"
 msgstr ""
 
@@ -2313,7 +2325,35 @@ msgid "Close clipboard menu"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
+msgid "Close native clipboard panel"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
 msgid "Clear clipboard history"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Select clipboard item by position"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Paste selected clipboard item"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Select previous clipboard item"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Select next clipboard item"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Move pinned clipboard item up"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Move pinned clipboard item down"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
@@ -2354,6 +2394,10 @@ msgstr ""
 #: src/modules/clipboard/clipboard.cpp
 #, c++-format
 msgid "Clipboard (Press {0} to clear history):"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.cpp
+msgid "Clipboard:"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.cpp:259

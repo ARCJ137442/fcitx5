@@ -191,16 +191,6 @@ Clipboard::Clipboard(Instance *instance) : instance_(instance) {
     }
 #endif
 
-    constexpr KeySym syms[] = {
-        FcitxKey_1, FcitxKey_2, FcitxKey_3, FcitxKey_4, FcitxKey_5,
-        FcitxKey_6, FcitxKey_7, FcitxKey_8, FcitxKey_9, FcitxKey_0,
-    };
-
-    KeyStates states = KeyState::NoState;
-
-    for (auto sym : syms) {
-        selectionKeys_.emplace_back(sym, states);
-    }
     tempMode_ = std::make_unique<ClipboardTempMode>(this);
     instance_->tempModeManager().registerTempMode(*tempMode_);
     eventHandlers_.emplace_back(
@@ -228,6 +218,24 @@ Clipboard::~Clipboard() {}
 
 void Clipboard::reloadConfig() {
     readAsIni(config_, configFile);
+    auto triggerKeys = *config_.triggerKey;
+    const auto &favoriteKeys = *config_.favoritesTriggerKey;
+    const auto oldSize = triggerKeys.size();
+    triggerKeys.erase(
+        std::remove_if(triggerKeys.begin(), triggerKeys.end(),
+                       [&favoriteKeys](const Key &triggerKey) {
+                           return std::any_of(
+                               favoriteKeys.begin(), favoriteKeys.end(),
+                               [&triggerKey](const Key &favoriteKey) {
+                                   return triggerKey.normalize() ==
+                                       favoriteKey.normalize();
+                               });
+                       }),
+        triggerKeys.end());
+    if (triggerKeys.size() != oldSize) {
+        config_.triggerKey.setValue(std::move(triggerKeys));
+        safeSaveAsIni(config_, configFile);
+    }
     refreshPasswordTimer();
 }
 
@@ -308,11 +316,14 @@ void Clipboard::updateUI(InputContext *inputContext) {
         candidateList->append<ClipboardCandidateWord>(this, iter->text,
                                                       iter->passwordTimestamp);
     }
-    candidateList->setSelectionKey(selectionKeys_);
+    candidateList->setSelectionKey(*config_.selectionKeys);
     candidateList->setLayoutHint(CandidateLayoutHint::Vertical);
 
-    Text auxUp(_("Clipboard (Press {0} to clear history):",
-                 KeyListLocalizedString(*config_.clearHistoryKey)));
+    Text auxUp(
+        *config_.showShortcutHints
+            ? _("Clipboard (Press {0} to clear history):",
+                KeyListLocalizedString(*config_.clearHistoryKey))
+            : _("Clipboard:"));
     if (!candidateList->totalSize()) {
         Text auxDown(_("No clipboard history."));
         inputContext->inputPanel().setAuxDown(auxDown);
