@@ -108,6 +108,21 @@ std::string ClipboardSelectionStrip(const std::string &text) {
     return result;
 }
 
+std::string KeyListLocalizedString(const KeyList &keys) {
+    std::string result;
+    for (const auto &key : keys) {
+        const auto localized = key.toString(KeyStringFormat::Localized);
+        if (localized.empty()) {
+            continue;
+        }
+        if (!result.empty()) {
+            result += "/";
+        }
+        result += localized;
+    }
+    return result;
+}
+
 } // namespace
 
 FCITX_DEFINE_LOG_CATEGORY(clipboard_log, "clipboard");
@@ -296,7 +311,8 @@ void Clipboard::updateUI(InputContext *inputContext) {
     candidateList->setSelectionKey(selectionKeys_);
     candidateList->setLayoutHint(CandidateLayoutHint::Vertical);
 
-    Text auxUp(_("Clipboard (Press BackSpace/Delete to clear history):"));
+    Text auxUp(_("Clipboard (Press {0} to clear history):",
+                 KeyListLocalizedString(*config_.clearHistoryKey)));
     if (!candidateList->totalSize()) {
         Text auxDown(_("No clipboard history."));
         inputContext->inputPanel().setAuxDown(auxDown);

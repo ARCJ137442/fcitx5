@@ -2296,6 +2296,34 @@ msgstr ""
 msgid "Number of entries"
 msgstr ""
 
+#: src/modules/clipboard/clipboard.h
+msgid "Show pinned clipboard items"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Pin or unpin selected clipboard item"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Delete selected clipboard item"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Close clipboard menu"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Clear clipboard history"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Previous clipboard page"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Next clipboard page"
+msgstr ""
+
 #: src/modules/clipboard/clipboard.h:63
 msgid "Do not show password from password managers"
 msgstr ""
@@ -2323,8 +2351,9 @@ msgstr ""
 msgid "<Password>"
 msgstr ""
 
-#: src/modules/clipboard/clipboard.cpp:257
-msgid "Clipboard (Press BackSpace/Delete to clear history):"
+#: src/modules/clipboard/clipboard.cpp
+#, c++-format
+msgid "Clipboard (Press {0} to clear history):"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.cpp:259

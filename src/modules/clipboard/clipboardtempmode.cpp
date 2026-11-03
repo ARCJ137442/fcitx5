@@ -116,8 +116,8 @@ bool ClipboardTempMode::keyEvent(const KeyEvent &keyEvent) {
         reset(inputContext);
         return true;
     }
-    if (keyEvent.key().check(FcitxKey_Delete) ||
-        keyEvent.key().check(FcitxKey_BackSpace)) {
+    if (keyEvent.checkKeyList(*clipboard_->config().clearHistoryKey,
+                              KeyEventMatchingMode::MatchAllNormalizedKeys)) {
         clipboard_->clear();
         reset(inputContext);
         return true;

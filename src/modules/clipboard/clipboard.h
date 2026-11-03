@@ -50,6 +50,48 @@ FCITX_CONFIGURATION(
                                               _("Trigger Key"),
                                               {Key("Control+semicolon")},
                                               KeyListConstrain()};
+    KeyListOption favoritesFilterKey{
+        this,
+        "FavoritesFilterKey",
+        _("Show pinned clipboard items"),
+        {Key("f")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption pinToggleKey{
+        this,
+        "PinToggleKey",
+        _("Pin or unpin selected clipboard item"),
+        {Key("d")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption deleteEntryKey{
+        this,
+        "DeleteEntryKey",
+        _("Delete selected clipboard item"),
+        {Key("x")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption closeMenuKey{
+        this,
+        "CloseMenuKey",
+        _("Close clipboard menu"),
+        {Key("q")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption clearHistoryKey{
+        this,
+        "ClearHistoryKey",
+        _("Clear clipboard history"),
+        {Key("BackSpace"), Key("Delete")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption previousPageKey{
+        this,
+        "PreviousPageKey",
+        _("Previous clipboard page"),
+        {Key("bracketleft"), Key("Page_Up")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption nextPageKey{
+        this,
+        "NextPageKey",
+        _("Next clipboard page"),
+        {Key("bracketright"), Key("Page_Down")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
     KeyListOption pastePrimaryKey{
         this, "PastePrimaryKey", _("Paste Primary"), {}, KeyListConstrain()};
     Option<int, IntConstrain> numOfEntries{this, "Number of entries",

@@ -2347,6 +2347,34 @@ msgstr "粘贴主选区"
 msgid "Number of entries"
 msgstr "项目个数"
 
+#: src/modules/clipboard/clipboard.h
+msgid "Show pinned clipboard items"
+msgstr "仅显示置顶剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Pin or unpin selected clipboard item"
+msgstr "置顶或取消置顶所选剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Delete selected clipboard item"
+msgstr "删除所选剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Close clipboard menu"
+msgstr "关闭剪贴板菜单"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Clear clipboard history"
+msgstr "清空剪贴板历史"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Previous clipboard page"
+msgstr "剪贴板上一页"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Next clipboard page"
+msgstr "剪贴板下一页"
+
 #: src/modules/clipboard/clipboard.h:63
 msgid "Do not show password from password managers"
 msgstr "不要显示密码管理工具中的密码"
@@ -2374,9 +2402,10 @@ msgstr "0 表示永不清除密码。"
 msgid "<Password>"
 msgstr "<密码>"
 
-#: src/modules/clipboard/clipboard.cpp:257
-msgid "Clipboard (Press BackSpace/Delete to clear history):"
-msgstr "剪贴板 (按退格/删除键清空历史): "
+#: src/modules/clipboard/clipboard.cpp
+#, c++-format
+msgid "Clipboard (Press {0} to clear history):"
+msgstr "剪贴板 (按 {0} 清空历史): "
 
 #: src/modules/clipboard/clipboard.cpp:259
 msgid "No clipboard history."
