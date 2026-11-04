@@ -56,6 +56,12 @@ FCITX_CONFIGURATION(
         _("Pinned menu trigger keys"),
         {Key("Alt+Shift+v")},
         KeyListConstrain()};
+    KeyListOption searchTriggerKey{
+        this,
+        "SearchTriggerKey",
+        _("Clipboard history search trigger keys"),
+        {Key("Alt+Shift+f")},
+        KeyListConstrain()};
     Option<bool> showShortcutHints{
         this, "ShowShortcutHints", _("Show shortcut hints"), true};
     KeyListOption favoritesFilterKey{
@@ -63,6 +69,12 @@ FCITX_CONFIGURATION(
         "FavoritesFilterKey",
         _("Show pinned clipboard items"),
         {Key("f")},
+        KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
+    KeyListOption searchFilterKey{
+        this,
+        "SearchFilterKey",
+        _("Search clipboard history"),
+        {Key("s")},
         KeyListConstrain({KeyConstrainFlag::AllowModifierLess})};
     KeyListOption pinToggleKey{
         this,
@@ -148,6 +160,12 @@ FCITX_CONFIGURATION(
     Option<int, IntConstrain> numOfEntries{this, "Number of entries",
                                            _("Number of entries"), 5,
                                            IntConstrain(3, 30)};
+    Option<int, IntConstrain> candidatePageSize{
+        this,
+        "CandidatePageSize",
+        _("Clipboard candidates per page"),
+        10,
+        IntConstrain(1, 30)};
     ConditionalHidden<isAndroid(),
                       OptionWithAnnotation<bool, ToolTipAnnotation>>
         ignorePasswordFromPasswordManager{

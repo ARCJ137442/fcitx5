@@ -2348,6 +2348,10 @@ msgid "Number of entries"
 msgstr "项目个数"
 
 #: src/modules/clipboard/clipboard.h
+msgid "Clipboard candidates per page"
+msgstr "每页剪贴板候选数"
+
+#: src/modules/clipboard/clipboard.h
 msgid "Clipboard trigger keys"
 msgstr "唤起剪贴板"
 
@@ -2356,12 +2360,20 @@ msgid "Pinned menu trigger keys"
 msgstr "唤起置顶菜单"
 
 #: src/modules/clipboard/clipboard.h
+msgid "Clipboard history search trigger keys"
+msgstr "唤起剪贴板搜索"
+
+#: src/modules/clipboard/clipboard.h
 msgid "Show shortcut hints"
 msgstr "显示快捷键提示"
 
 #: src/modules/clipboard/clipboard.h
 msgid "Show pinned clipboard items"
 msgstr "仅显示置顶剪贴板项"
+
+#: src/modules/clipboard/clipboard.h
+msgid "Search clipboard history"
+msgstr "搜索剪贴板历史"
 
 #: src/modules/clipboard/clipboard.h
 msgid "Pin or unpin selected clipboard item"

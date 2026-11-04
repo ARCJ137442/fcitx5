@@ -50,7 +50,16 @@ bool ClipboardTempMode::keyEvent(const KeyEvent &keyEvent) {
 
     auto candidateList = inputContext->inputPanel().candidateList();
     if (candidateList) {
-        int idx = keyEvent.key().digitSelection();
+        int idx = -1;
+        const auto &selectionKeys = *clipboard_->config().selectionKeys;
+        // Digit selection assumes the default 1..9,0 order. A custom list may
+        // omit or reorder positions, so only use digitSelection for the default.
+        if (!selectionKeys.empty() &&
+            selectionKeys[0].sym() == FcitxKey_1) {
+            idx = keyEvent.key().digitSelection();
+        } else {
+            idx = keyEvent.key().keyListIndex(selectionKeys);
+        }
         if (idx >= 0) {
             if (idx < candidateList->size()) {
                 candidateList->candidate(idx).select(inputContext);

@@ -2297,6 +2297,10 @@ msgid "Number of entries"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
+msgid "Clipboard candidates per page"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
 msgid "Clipboard trigger keys"
 msgstr ""
 
@@ -2305,11 +2309,19 @@ msgid "Pinned menu trigger keys"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
+msgid "Clipboard history search trigger keys"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
 msgid "Show shortcut hints"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
 msgid "Show pinned clipboard items"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
+msgid "Search clipboard history"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
