@@ -2313,6 +2313,10 @@ msgid "Clipboard history search trigger keys"
 msgstr ""
 
 #: src/modules/clipboard/clipboard.h
+msgid "Additional clipboard history search trigger keys"
+msgstr ""
+
+#: src/modules/clipboard/clipboard.h
 msgid "Show shortcut hints"
 msgstr ""
 

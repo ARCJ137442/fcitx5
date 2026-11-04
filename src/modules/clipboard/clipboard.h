@@ -62,6 +62,12 @@ FCITX_CONFIGURATION(
         _("Clipboard history search trigger keys"),
         {Key("Alt+Shift+f")},
         KeyListConstrain()};
+    KeyListOption searchTriggerKeySecondary{
+        this,
+        "SearchTriggerKeySecondary",
+        _("Additional clipboard history search trigger keys"),
+        {},
+        KeyListConstrain()};
     Option<bool> showShortcutHints{
         this, "ShowShortcutHints", _("Show shortcut hints"), true};
     KeyListOption favoritesFilterKey{

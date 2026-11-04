@@ -2364,6 +2364,10 @@ msgid "Clipboard history search trigger keys"
 msgstr "唤起剪贴板搜索"
 
 #: src/modules/clipboard/clipboard.h
+msgid "Additional clipboard history search trigger keys"
+msgstr "附加剪贴板搜索快捷键"
+
+#: src/modules/clipboard/clipboard.h
 msgid "Show shortcut hints"
 msgstr "显示快捷键提示"
 
